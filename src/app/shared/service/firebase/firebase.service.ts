@@ -16,8 +16,7 @@ export class FirebaseService {
   }
 
    async loadData() {
-      const userRef = collection(this.firestore, 'test');
-      debugger
+      const userRef = collection(this.firestore, 'test');     
     try {
       const querySnapshot = await getDocs(userRef);
       const users = querySnapshot.docs.map(doc => ({

@@ -9,9 +9,5 @@ import { FirebaseService } from './shared/service/firebase/firebase.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(public firestoreService: FirebaseService) {}
- async test() {
-    const test = await this.firestoreService.loadData();
-    console.log('daten von Firebase', test);
-  }
+ 
 }
