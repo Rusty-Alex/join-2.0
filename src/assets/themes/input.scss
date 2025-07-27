@@ -1,0 +1,34 @@
+@mixin input-style($variant: 'primary') {
+    width: calc(100% - 21px);
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);    
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-normal);
+    padding:  0;
+
+    @if $variant == 'primary' {
+        background-color: var(--white-color);
+        color: var(--input-border);
+        padding-left: 21px;
+
+        &::placeholder {
+            color: var(--input-border);
+            
+        }
+
+        &:focus {
+            border: 1px solid var(--btn-back);
+            color: var(--btn-start);
+            outline: none;         
+                        
+        }
+        
+        
+    }
+
+}
+
+.input-primary {
+    @include input-style('primary');
+}

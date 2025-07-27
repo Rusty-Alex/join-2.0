@@ -1,0 +1,88 @@
+<section class="sign">
+    <img class="sign-logo" src="assets/img/logoStart.png" alt="">
+
+    <div class="sign-form">
+        <img class="sign-arrow" src="assets/img/arrow-left-line.png" alt="" (click)="goToLogin()">
+        <div class="sign-form-title">
+            <span>Sign up</span>
+            <span></span>
+        </div>
+
+        <form class="sign-form-content">
+
+            <div class="input-area">
+                <input class="input-primary" type="text" placeholder="Name" [formControl]="nameControl">
+                <img class="input-icon" src="assets/img/person.png" alt="">
+            </div>
+
+            <div class="input-area">
+                <input
+                    [class]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched) ? 'input-error' : ''"
+                    [formControl]="emailFormControl" class="input-primary" type="email" placeholder="E-Mail">
+                <img class="input-icon" src="assets/img/mailLogin.png" alt="">
+                @if(emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)){
+                @if(emailFormControl.hasError('pattern') ){
+                <span class="error">*Diese E-Mail-Adresse ist leider ungültig.</span>
+                }
+                @if(emailFormControl.hasError('required') ){
+                <span class="error">*Bitte gebe eine E-Mail-Adresse an </span>
+                }
+                }
+            </div>
+
+            <div class="input-area">
+                <input [formControl]="passwordFormControl" class="input-primary"
+                    [class]="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched) ? 'input-error' : ''"
+                    [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" (click)="showPasswordOn()">
+                @if(showPassword){
+                @if(passwordVisible){
+                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }@else{
+                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }
+
+                }@else{
+                <img class="input-icon" src="assets/img/lock.png" alt="">
+                }
+
+                @if (passwordFormControl.hasError('minlength')) {
+                <span class="error">
+                    Das Passwort muss mindestens 8 Zeichen lang sein.
+                </span>
+                }
+                @if(passwordFormControl.hasError('required') && passwordFormControl.touched){
+                <span class="error">*Bitte gebe ein Passwort an</span>
+                }
+            </div>
+
+            <div class="input-area">
+                <input class="input-primary" [type]="passwordVisible ? 'text' : 'password'"
+                    placeholder="Comfirm Password" (click)="showPasswordOn()">
+                @if(showPassword){
+                @if(passwordVisible){
+                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }@else{
+                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }
+
+                }@else{
+                <img class="input-icon" src="assets/img/lock.png" alt="">
+                }
+            </div>
+
+        </form>
+
+        <label class="checkbox-wrapper">
+            <input type="checkbox" name="checkbox" [formControl]="checked" />
+            I accept the <a href="#">Privacy Policy</a>
+        </label>
+
+    </div>
+
+
+
+</section>

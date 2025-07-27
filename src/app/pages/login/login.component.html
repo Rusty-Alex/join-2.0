@@ -1,0 +1,66 @@
+<section class="login">
+    <img class="login-logo" src="assets/img/logoStart.png" alt="">
+    <div class="login-sign">
+        <span>Not a Join user?</span>
+        <button class="btn button-primary" (click)="goToSign()">Sign up</button>
+    </div>
+    <div class="login-form">
+        <div class="login-form-title">
+            <span> Log in</span>
+            <span></span>
+        </div>
+
+
+        <form class="login-form-content" (ngSubmit)="onSubmit()">
+            <div class="input-area"><input [formControl]="emailFormControl"
+                    [class]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched) ? 'input-error' : ''"
+                    class="input-primary" type="email" placeholder="Email">
+                <img class="input-icon" src="assets/img/mailLogin.png" alt="">
+                @if(emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)){
+                @if(emailFormControl.hasError('pattern') ){
+                <span class="error">*Diese E-Mail-Adresse ist leider ungültig.</span>
+                }
+                @if(emailFormControl.hasError('required') ){
+                <span class="error">*Bitte gebe eine E-Mail-Adresse an </span>
+                }
+                }
+            </div>
+
+
+            <div class="input-area">
+                <input [formControl]="passwordFormControl" class="input-primary"
+                [class]="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched) ? 'input-error' : ''"
+                    [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" (click)="showPasswordOn()">
+                @if(showPassword){
+                @if(passwordVisible){
+                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }@else{
+                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                    (click)="passwordVisible = !passwordVisible">
+                }
+
+                }@else{
+                <img class="input-icon" src="assets/img/lock.png" alt="">
+                }
+
+                @if (passwordFormControl.hasError('minlength')) {
+                <span class="error">
+                    Das Passwort muss mindestens 8 Zeichen lang sein.
+                </span>
+                }
+                @if(passwordFormControl.hasError('required') && passwordFormControl.touched){
+                <span class="error">*Bitte gebe ein Passwort an</span>
+                }
+
+            </div>
+
+
+            <div class="btn-submit"><button [disabled]="emailFormControl.invalid || passwordFormControl.invalid" class="btn-login button-primary" type="submit">Log in</button> <button
+                    class="btn-guest button-secondary">Guest Log in</button></div>
+        </form>
+    </div>
+
+
+
+</section>

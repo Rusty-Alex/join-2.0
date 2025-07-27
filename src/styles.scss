@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'assets/themes/button.scss' as *;
+@use 'assets/themes/input.scss' as *;
+
+html,
+body {
+    height: 100%;
+    font-family: 'inter', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+
+//Colors
+:root {
+
+    --bg-color: #F6F7F8;
+    --white-color: #fff;
+    --black-color: #000;
+    --error-msg: #ED1E79;
+    --btn-start: #2A3647;
+    --btn-back: #29ABE2;
+    --input-border: #D1D1D1;
+    --btn-secendary: #2A3647;
+    --grey-dark: #686868;
+
+
+}
+
+//Font-Size
+:root {
+    --font-size-error: 14px;
+    --font-size-title-default: 24px;
+    --font-size-s: 16px;
+    --font-size-m: 18px;
+    --font-size-l: 20px;
+    --font-size-ml: 24px;
+    --font-size-xl: 21px;
+    --font-size-xxl: 46px;
+    --font-size-xxxl: 61px;
+    --font-weight-normal: 400;
+    --font-weight-bold: 500;
+    --font-weight-extra-bold: 700;
+}
+
+// Font
+@font-face {
+    font-family: 'inter';
+    src: url('assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.input-area {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+.input-icon {
+    position: absolute;
+    top: 12px;
+    right: 21px;
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+
+.input-error{
+    border: 2px solid var(--error-msg) !important;
+}
+
+.error{
+    color: var(--error-msg);
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+}

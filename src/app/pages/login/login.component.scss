@@ -1,0 +1,116 @@
+.login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: var(--bg-color);
+
+    &-logo {
+        width: 100px;
+        height: 122px;
+        position: absolute;
+        left: 77px;
+        top: 80px;
+        object-fit: cover;
+    }
+
+    &-sign {
+        width: 279px;
+        height: 49px;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        right: 122px;
+        top: 67px;
+        font-size: var(--font-size-l);
+
+        & .btn {
+            width: 91px;
+            height: 49px;
+            border-radius: 8px;
+            border: none;
+            transition: 125ms ease-in-out;
+            font-size: var(--font-size-s);
+            font-weight: var(--font-weight-extra-bold);
+        }
+    }
+
+    &-form {
+        width: 652px;
+        height: 449px;
+        background-color: var(--white-color);
+        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+
+
+        &-title {
+            width: 100%;
+            height: 89px;
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+
+            & span:nth-of-type(1) {
+                line-height: 120%;
+                height: 73px;
+                font-size: var(--font-size-xxxl);
+                font-weight: var(--font-weight-extra-bold);
+                color: var(--black-color);
+            }
+
+            & span:nth-of-type(2) {
+                border: 2px solid var(--btn-back);
+                border-radius: 30px;
+                width: 150px;
+                height: 0px;
+            }
+
+        }
+
+        &-content {
+            width: 422px;
+            height: 152px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+
+        }
+    }
+}
+
+
+
+.btn-submit {
+    display: flex;
+    gap: 32px;
+}
+
+.btn-login {
+    width: 110px;
+    height: 48px;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-extra-bold);
+}
+
+.btn-guest {
+    width: 177px;
+    height: 48px;
+    color: var(--btn-secendary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-extra-bold);
+
+    &:hover {
+        color: var(--btn-back);
+    }   
+}
+

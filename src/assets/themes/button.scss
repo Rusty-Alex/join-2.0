@@ -1,0 +1,49 @@
+@mixin button-style($variant: 'primary') {
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white-color);
+
+
+    @if $variant =='primary' {
+        background-color: var(--btn-start);
+        color: var(--white-color);
+
+        &:hover {
+            background-color: var(--btn-back);
+            color: var(--white-color);
+            box-shadow: 0px 4px 4px 0px #00000040;
+        }
+
+        &:disabled {
+            background-color: var(--grey-dark);
+            border-color: var(--grey-dark);
+        }
+
+    }
+
+    @if $variant =='secondary' {
+        background-color: var(--white-color);
+        color: var(--btn-start);
+        border: 1px solid var(--btn-secendary);
+
+        &:hover {
+            border: 2px solid var(--btn-back);            
+            box-shadow: 0px 4px 4px 0px #00000040;
+
+        }
+        
+    }
+
+}
+
+.button-primary {
+    @include button-style('primary');
+}
+
+.button-secondary {
+    @include button-style('secondary');
+}
