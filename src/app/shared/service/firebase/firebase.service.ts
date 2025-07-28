@@ -8,26 +8,36 @@ import { Firestore, doc, setDoc, getDoc, getFirestore, updateDoc, collection, ge
   providedIn: 'root'
 })
 export class FirebaseService {
- private app: FirebaseApp;
+  private app: FirebaseApp;
   public firestore: Firestore;
-  constructor() { 
+  constructor() {
     this.app = initializeApp(firebaseConfig);
     this.firestore = getFirestore(this.app);
   }
+  async saveUserToFirestore(user: any,) {
+    const usersCollection = collection(this.firestore, 'users');
+    const userRef = doc(usersCollection, user.uid);
+    try {      
+      await setDoc(userRef, {
+        email: user.email,
+        displayName: user.displayName,
+        uid: user.uid,
+        createdAt: new Date()
+      });
 
-   async loadData() {
-      const userRef = collection(this.firestore, 'test');     
-    try {
-      const querySnapshot = await getDocs(userRef);
-      const users = querySnapshot.docs.map(doc => ({
-        ...doc.data()
-      }));
-      
-      return users;
     } catch (error) {
-      console.error('Error fetching users from Firestore:', error);
-      throw error;
+      console.error('Error saving user to Firestore:', error);
     }
-  
   }
+
+  async loadUserData(uid: string) {
+    const userRef = doc(this.firestore, 'users', uid);
+    const userSnapshot = await getDoc(userRef);
+    if (userSnapshot.exists()) {
+      return userSnapshot.data();
+    } else {
+      return null;
+    }
+  }
+
 }

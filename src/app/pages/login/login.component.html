@@ -11,7 +11,7 @@
         </div>
 
 
-        <form class="login-form-content" (ngSubmit)="onSubmit()">
+        <form class="login-form-content" >
             <div class="input-area"><input [formControl]="emailFormControl"
                     [class]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched) ? 'input-error' : ''"
                     class="input-primary" type="email" placeholder="Email">
@@ -29,14 +29,15 @@
 
             <div class="input-area">
                 <input [formControl]="passwordFormControl" class="input-primary"
+                (input)="checkOfWrite()"
                 [class]="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched) ? 'input-error' : ''"
                     [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" (click)="showPasswordOn()">
                 @if(showPassword){
                 @if(passwordVisible){
-                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }@else{
-                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility_off.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }
 
@@ -52,12 +53,15 @@
                 @if(passwordFormControl.hasError('required') && passwordFormControl.touched){
                 <span class="error">*Bitte gebe ein Passwort an</span>
                 }
+                @if(mainVariable.errorLogin){
+                <span class="error">*Passwort oder E-Mail ist falsch</span>
+                }
 
             </div>
 
 
-            <div class="btn-submit"><button [disabled]="emailFormControl.invalid || passwordFormControl.invalid" class="btn-login button-primary" type="submit">Log in</button> <button
-                    class="btn-guest button-secondary">Guest Log in</button></div>
+            <div class="btn-submit"><button [disabled]="emailFormControl.invalid || passwordFormControl.invalid" class="btn-login button-primary" type="submit" (click)="login()">Log in</button> <button
+                    class="btn-guest button-secondary" >Guest Log in</button></div>
         </form>
     </div>
 

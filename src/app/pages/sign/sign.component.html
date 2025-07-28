@@ -13,12 +13,15 @@
             <div class="input-area">
                 <input class="input-primary" type="text" placeholder="Name" [formControl]="nameControl">
                 <img class="input-icon" src="assets/img/person.png" alt="">
+                @if(nameControl.hasError('pattern') ){
+                <span class="error">*Bitte gebe eine echten Namen an </span>
+                }
             </div>
 
             <div class="input-area">
                 <input
                     [class]="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched) ? 'input-error' : ''"
-                    [formControl]="emailFormControl" class="input-primary" type="email" placeholder="E-Mail">
+                    [formControl]="emailFormControl" class="input-primary" type="email" placeholder="E-Mail" (input)="checkOfWrite()">
                 <img class="input-icon" src="assets/img/mailLogin.png" alt="">
                 @if(emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)){
                 @if(emailFormControl.hasError('pattern') ){
@@ -36,10 +39,10 @@
                     [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" (click)="showPasswordOn()">
                 @if(showPassword){
                 @if(passwordVisible){
-                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }@else{
-                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility_off.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }
 
@@ -58,19 +61,25 @@
             </div>
 
             <div class="input-area">
-                <input class="input-primary" [type]="passwordVisible ? 'text' : 'password'"
+                <input [formControl]="comfirmFormControl" class="input-primary" [type]="passwordVisible ? 'text' : 'password'"
                     placeholder="Comfirm Password" (click)="showPasswordOn()">
                 @if(showPassword){
                 @if(passwordVisible){
-                <img class="input-icon" src="assets/img/visibility.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }@else{
-                <img class="input-icon" src="assets/img/visibility_off.png" alt=""
+                <img class="input-icon on" src="assets/img/visibility_off.png" alt=""
                     (click)="passwordVisible = !passwordVisible">
                 }
 
                 }@else{
                 <img class="input-icon" src="assets/img/lock.png" alt="">
+                }
+                @if(passwordFormControl.value != comfirmFormControl.value && comfirmFormControl.touched){
+                <span class="error">*Gib bitte das gleiche Passwort an!</span>
+                }
+                @if(mainVariable.errorRegist){
+                <span class="error">*Die E-Mail-Adresse ist bereits vergeben</span>
                 }
             </div>
 
@@ -80,6 +89,8 @@
             <input type="checkbox" name="checkbox" [formControl]="checked" />
             I accept the <a href="#">Privacy Policy</a>
         </label>
+
+        <div><button [disabled]="!checkAll()" class="btn-submit" class="btn-login button-primary" (click)="onSign()">Sign up</button></div>
 
     </div>
 

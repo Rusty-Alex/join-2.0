@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, Validators, FormControl, FormsModule } from '@angular/forms';
+import { AuthService } from '../../shared/service/auth/auth.service';
+import { MainVariableService } from '../../shared/service/mainVariable/main-variable.service';
 
 
 
@@ -24,7 +26,7 @@ export class LoginComponent {
   ]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
-  constructor(private router: Router, ) {
+  constructor(private router: Router, public authService: AuthService, public mainVariable: MainVariableService) {
     
   }
 goToSign(){  
@@ -35,11 +37,12 @@ showPasswordOn(){
 this.showPassword = true;
 }
 
-onSubmit(){
-  
-  console.log(this.emailFormControl.value);
-  console.log(this.passwordFormControl.value);
-  
-  
+
+login(){
+this.authService.loginUser(this.emailFormControl.value, this.passwordFormControl.value);
+}
+
+checkOfWrite(){
+  this.mainVariable.errorLogin = false;
 }
 }
